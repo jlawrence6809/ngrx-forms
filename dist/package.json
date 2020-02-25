@@ -1,0 +1,76 @@
+{
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "name": "ngrx-forms",
+  "version": "6.1.0",
+  "description": "Proper integration of forms in Angular 4 applications using ngrx",
+  "module": "fesm5/ngrx-forms.js",
+  "es2015": "fesm2015/ngrx-forms.js",
+  "main": "bundles/ngrx-forms.umd.js",
+  "typings": "ngrx-forms.d.ts",
+  "author": "Jonathan Ziller <jonathan.ziller@gmail.com> (https://github.com/MrWolfZ)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrWolfZ/ngrx-forms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrWolfZ/ngrx-forms/issues"
+  },
+  "homepage": "https://github.com/MrWolfZ/ngrx-forms",
+  "keywords": [
+    "angular",
+    "javascript",
+    "typescript",
+    "ngrx",
+    "redux"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": ">=8.0.0",
+    "@angular/common": ">=8.0.0",
+    "@angular/forms": ">=8.0.0",
+    "@ngrx/store": ">=7.0.0",
+    "typescript": ">=3.4.0"
+  },
+  "devDependencies": {
+    "@angular/common": "8.0.0",
+    "@angular/compiler": "8.0.0",
+    "@angular/compiler-cli": "8.0.0",
+    "@angular/core": "8.0.0",
+    "@angular/forms": "8.0.0",
+    "@angular/platform-browser": "8.0.0",
+    "@angular/platform-browser-dynamic": "8.0.0",
+    "@ngrx/store": "8.0.1",
+    "@types/jasmine": "2.8.6",
+    "@types/node": "10.12.18",
+    "codecov": "3.1.0",
+    "codelyzer": "5.0.1",
+    "core-js": "2.6.1",
+    "cross-var": "^1.1.0",
+    "dtslint": "0.7.7",
+    "jasmine-core": "2.6.4",
+    "karma": "2.0.4",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-jasmine": "1.1.1",
+    "karma-spec-reporter": "0.0.32",
+    "karma-typescript": "4.0.0",
+    "karma-typescript-es6-transform": "4.0.0",
+    "ng-packagr": "5.2.0",
+    "reflect-metadata": "0.1.12",
+    "rimraf": "2.6.3",
+    "rxjs": "6.5.2",
+    "tsickle": "0.35.0",
+    "tslint": "5.16.0",
+    "tslint-eslint-rules": "5.4.0",
+    "typescript": "3.4.5",
+    "zone.js": "0.9.1"
+  },
+  "esm5": "esm5/ngrx-forms.js",
+  "esm2015": "esm2015/ngrx-forms.js",
+  "fesm5": "fesm5/ngrx-forms.js",
+  "fesm2015": "fesm2015/ngrx-forms.js",
+  "metadata": "ngrx-forms.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

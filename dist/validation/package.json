@@ -1,0 +1,13 @@
+{
+  "name": "ngrx-forms/validation",
+  "main": "../bundles/ngrx-forms-validation.umd.js",
+  "module": "../fesm5/ngrx-forms-validation.js",
+  "es2015": "../fesm2015/ngrx-forms-validation.js",
+  "esm5": "../esm5/validation/ngrx-forms-validation.js",
+  "esm2015": "../esm2015/validation/ngrx-forms-validation.js",
+  "fesm5": "../fesm5/ngrx-forms-validation.js",
+  "fesm2015": "../fesm2015/ngrx-forms-validation.js",
+  "typings": "ngrx-forms-validation.d.ts",
+  "metadata": "ngrx-forms-validation.metadata.json",
+  "sideEffects": false
+}

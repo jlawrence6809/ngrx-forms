@@ -1,0 +1,54 @@
+import { NgrxCheckboxViewAdapter } from './checkbox';
+import { NgrxDefaultViewAdapter } from './default';
+import { NgrxNumberViewAdapter } from './number';
+import { NgrxRadioViewAdapter } from './radio';
+import { NgrxRangeViewAdapter } from './range';
+import { NgrxSelectViewAdapter } from './select';
+import { NgrxSelectMultipleViewAdapter } from './select-multiple';
+var BUILTIN_ADAPTERS = [
+    NgrxCheckboxViewAdapter,
+    NgrxRangeViewAdapter,
+    NgrxNumberViewAdapter,
+    NgrxSelectViewAdapter,
+    NgrxSelectMultipleViewAdapter,
+    NgrxRadioViewAdapter,
+];
+export function isBuiltInViewAdapter(viewAdapter) {
+    return BUILTIN_ADAPTERS.some(function (a) { return viewAdapter.constructor === a; });
+}
+export function selectViewAdapter(viewAdapters) {
+    if (!viewAdapters) {
+        throw new Error('No view adapter matches!');
+    }
+    var defaultAdapter;
+    var builtinAdapter;
+    var customAdapter;
+    viewAdapters.forEach(function (v) {
+        if (v.constructor === NgrxDefaultViewAdapter) {
+            defaultAdapter = v;
+        }
+        else if (isBuiltInViewAdapter(v)) {
+            if (builtinAdapter) {
+                throw new Error('More than one built-in view adapter matches!');
+            }
+            builtinAdapter = v;
+        }
+        else {
+            if (customAdapter) {
+                throw new Error('More than one custom view adapter matches!');
+            }
+            customAdapter = v;
+        }
+    });
+    if (customAdapter) {
+        return customAdapter;
+    }
+    if (builtinAdapter) {
+        return builtinAdapter;
+    }
+    if (defaultAdapter) {
+        return defaultAdapter;
+    }
+    throw new Error('No valid view adapter!');
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL25ncngtZm9ybXMvIiwic291cmNlcyI6WyJzcmMvdmlldy1hZGFwdGVyL3V0aWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLHVCQUF1QixFQUFFLE1BQU0sWUFBWSxDQUFDO0FBQ3JELE9BQU8sRUFBRSxzQkFBc0IsRUFBRSxNQUFNLFdBQVcsQ0FBQztBQUNuRCxPQUFPLEVBQUUscUJBQXFCLEVBQUUsTUFBTSxVQUFVLENBQUM7QUFDakQsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0sU0FBUyxDQUFDO0FBQy9DLE9BQU8sRUFBRSxvQkFBb0IsRUFBRSxNQUFNLFNBQVMsQ0FBQztBQUMvQyxPQUFPLEVBQUUscUJBQXFCLEVBQUUsTUFBTSxVQUFVLENBQUM7QUFDakQsT0FBTyxFQUFFLDZCQUE2QixFQUFFLE1BQU0sbUJBQW1CLENBQUM7QUFHbEUsSUFBTSxnQkFBZ0IsR0FBRztJQUN2Qix1QkFBdUI7SUFDdkIsb0JBQW9CO0lBQ3BCLHFCQUFxQjtJQUNyQixxQkFBcUI7SUFDckIsNkJBQTZCO0lBQzdCLG9CQUFvQjtDQUNyQixDQUFDO0FBRUYsTUFBTSxVQUFVLG9CQUFvQixDQUFDLFdBQTRCO0lBQy9ELE9BQU8sZ0JBQWdCLENBQUMsSUFBSSxDQUFDLFVBQUEsQ0FBQyxJQUFJLE9BQUEsV0FBVyxDQUFDLFdBQVcsS0FBSyxDQUFDLEVBQTdCLENBQTZCLENBQUMsQ0FBQztBQUNuRSxDQUFDO0FBRUQsTUFBTSxVQUFVLGlCQUFpQixDQUFDLFlBQStCO0lBQy9ELElBQUksQ0FBQyxZQUFZLEVBQUU7UUFDakIsTUFBTSxJQUFJLEtBQUssQ0FBQywwQkFBMEIsQ0FBQyxDQUFDO0tBQzdDO0lBRUQsSUFBSSxjQUEyQyxDQUFDO0lBQ2hELElBQUksY0FBMkMsQ0FBQztJQUNoRCxJQUFJLGFBQTBDLENBQUM7SUFDL0MsWUFBWSxDQUFDLE9BQU8sQ0FBQyxVQUFDLENBQWtCO1FBQ3RDLElBQUksQ0FBQyxDQUFDLFdBQVcsS0FBSyxzQkFBc0IsRUFBRTtZQUM1QyxjQUFjLEdBQUcsQ0FBQyxDQUFDO1NBQ3BCO2FBQU0sSUFBSSxvQkFBb0IsQ0FBQyxDQUFDLENBQUMsRUFBRTtZQUNsQyxJQUFJLGNBQWMsRUFBRTtnQkFDbEIsTUFBTSxJQUFJLEtBQUssQ0FBQyw4Q0FBOEMsQ0FBQyxDQUFDO2FBQ2pFO1lBRUQsY0FBYyxHQUFHLENBQUMsQ0FBQztTQUNwQjthQUFNO1lBQ0wsSUFBSSxhQUFhLEVBQUU7Z0JBQ2pCLE1BQU0sSUFBSSxLQUFLLENBQUMsNENBQTRDLENBQUMsQ0FBQzthQUMvRDtZQUVELGFBQWEsR0FBRyxDQUFDLENBQUM7U0FDbkI7SUFDSCxDQUFDLENBQUMsQ0FBQztJQUVILElBQUksYUFBYSxFQUFFO1FBQ2pCLE9BQU8sYUFBYSxDQUFDO0tBQ3RCO0lBRUQsSUFBSSxjQUFjLEVBQUU7UUFDbEIsT0FBTyxjQUFjLENBQUM7S0FDdkI7SUFFRCxJQUFJLGNBQWMsRUFBRTtRQUNsQixPQUFPLGNBQWMsQ0FBQztLQUN2QjtJQUVELE1BQU0sSUFBSSxLQUFLLENBQUMsd0JBQXdCLENBQUMsQ0FBQztBQUM1QyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmdyeENoZWNrYm94Vmlld0FkYXB0ZXIgfSBmcm9tICcuL2NoZWNrYm94JztcbmltcG9ydCB7IE5ncnhEZWZhdWx0Vmlld0FkYXB0ZXIgfSBmcm9tICcuL2RlZmF1bHQnO1xuaW1wb3J0IHsgTmdyeE51bWJlclZpZXdBZGFwdGVyIH0gZnJvbSAnLi9udW1iZXInO1xuaW1wb3J0IHsgTmdyeFJhZGlvVmlld0FkYXB0ZXIgfSBmcm9tICcuL3JhZGlvJztcbmltcG9ydCB7IE5ncnhSYW5nZVZpZXdBZGFwdGVyIH0gZnJvbSAnLi9yYW5nZSc7XG5pbXBvcnQgeyBOZ3J4U2VsZWN0Vmlld0FkYXB0ZXIgfSBmcm9tICcuL3NlbGVjdCc7XG5pbXBvcnQgeyBOZ3J4U2VsZWN0TXVsdGlwbGVWaWV3QWRhcHRlciB9IGZyb20gJy4vc2VsZWN0LW11bHRpcGxlJztcbmltcG9ydCB7IEZvcm1WaWV3QWRhcHRlciB9IGZyb20gJy4vdmlldy1hZGFwdGVyJztcblxuY29uc3QgQlVJTFRJTl9BREFQVEVSUyA9IFtcbiAgTmdyeENoZWNrYm94Vmlld0FkYXB0ZXIsXG4gIE5ncnhSYW5nZVZpZXdBZGFwdGVyLFxuICBOZ3J4TnVtYmVyVmlld0FkYXB0ZXIsXG4gIE5ncnhTZWxlY3RWaWV3QWRhcHRlcixcbiAgTmdyeFNlbGVjdE11bHRpcGxlVmlld0FkYXB0ZXIsXG4gIE5ncnhSYWRpb1ZpZXdBZGFwdGVyLFxuXTtcblxuZXhwb3J0IGZ1bmN0aW9uIGlzQnVpbHRJblZpZXdBZGFwdGVyKHZpZXdBZGFwdGVyOiBGb3JtVmlld0FkYXB0ZXIpOiBib29sZWFuIHtcbiAgcmV0dXJuIEJVSUxUSU5fQURBUFRFUlMuc29tZShhID0+IHZpZXdBZGFwdGVyLmNvbnN0cnVjdG9yID09PSBhKTtcbn1cblxuZXhwb3J0IGZ1bmN0aW9uIHNlbGVjdFZpZXdBZGFwdGVyKHZpZXdBZGFwdGVyczogRm9ybVZpZXdBZGFwdGVyW10pOiBGb3JtVmlld0FkYXB0ZXIge1xuICBpZiAoIXZpZXdBZGFwdGVycykge1xuICAgIHRocm93IG5ldyBFcnJvcignTm8gdmlldyBhZGFwdGVyIG1hdGNoZXMhJyk7XG4gIH1cblxuICBsZXQgZGVmYXVsdEFkYXB0ZXI6IEZvcm1WaWV3QWRhcHRlciB8IHVuZGVmaW5lZDtcbiAgbGV0IGJ1aWx0aW5BZGFwdGVyOiBGb3JtVmlld0FkYXB0ZXIgfCB1bmRlZmluZWQ7XG4gIGxldCBjdXN0b21BZGFwdGVyOiBGb3JtVmlld0FkYXB0ZXIgfCB1bmRlZmluZWQ7XG4gIHZpZXdBZGFwdGVycy5mb3JFYWNoKCh2OiBGb3JtVmlld0FkYXB0ZXIpID0+IHtcbiAgICBpZiAodi5jb25zdHJ1Y3RvciA9PT0gTmdyeERlZmF1bHRWaWV3QWRhcHRlcikge1xuICAgICAgZGVmYXVsdEFkYXB0ZXIgPSB2O1xuICAgIH0gZWxzZSBpZiAoaXNCdWlsdEluVmlld0FkYXB0ZXIodikpIHtcbiAgICAgIGlmIChidWlsdGluQWRhcHRlcikge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoJ01vcmUgdGhhbiBvbmUgYnVpbHQtaW4gdmlldyBhZGFwdGVyIG1hdGNoZXMhJyk7XG4gICAgICB9XG5cbiAgICAgIGJ1aWx0aW5BZGFwdGVyID0gdjtcbiAgICB9IGVsc2Uge1xuICAgICAgaWYgKGN1c3RvbUFkYXB0ZXIpIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKCdNb3JlIHRoYW4gb25lIGN1c3RvbSB2aWV3IGFkYXB0ZXIgbWF0Y2hlcyEnKTtcbiAgICAgIH1cblxuICAgICAgY3VzdG9tQWRhcHRlciA9IHY7XG4gICAgfVxuICB9KTtcblxuICBpZiAoY3VzdG9tQWRhcHRlcikge1xuICAgIHJldHVybiBjdXN0b21BZGFwdGVyO1xuICB9XG5cbiAgaWYgKGJ1aWx0aW5BZGFwdGVyKSB7XG4gICAgcmV0dXJuIGJ1aWx0aW5BZGFwdGVyO1xuICB9XG5cbiAgaWYgKGRlZmF1bHRBZGFwdGVyKSB7XG4gICAgcmV0dXJuIGRlZmF1bHRBZGFwdGVyO1xuICB9XG5cbiAgdGhyb3cgbmV3IEVycm9yKCdObyB2YWxpZCB2aWV3IGFkYXB0ZXIhJyk7XG59XG4iXX0=
