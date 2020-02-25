@@ -1,6 +1,7 @@
 import { Actions, SetValueAction } from '../../actions';
 import { formStateReducer } from '../../reducer';
 import { computeGroupState, createChildState, FormGroupControls, FormGroupState, KeyValue } from '../../state';
+import { isBoxed, unbox } from '../../boxing';
 import { childReducer } from './util';
 
 export function setValueReducer<TValue extends KeyValue>(
@@ -23,7 +24,10 @@ export function setValueReducer<TValue extends KeyValue>(
     throw new Error('Date values are not supported. Please used serialized strings instead.');
   }
 
-  const value = action.value;
+  let value = action.value;
+  if (isBoxed(value)) {
+    value = unbox(value);
+  }
 
   const controls = Object.keys(value)
     .reduce((c, key) => {
